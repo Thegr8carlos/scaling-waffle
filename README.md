@@ -1,2 +1,2 @@
 # scaling-waffle
-javascript
+Calculadora de areas y perimetros :)
