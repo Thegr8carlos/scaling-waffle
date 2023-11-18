@@ -1,4 +1,4 @@
-
+//Agregano cambios desde mi tablea en el github
 function calcularAreaCuadrado()
 {
     const input = document.getElementById("cuadrado");
