@@ -1,2 +1,2 @@
 # scaling-waffle
-Calculadora de areas y perimetros :)
+Visualizador en navegador de las estructuras pila, cola y lista  :)
