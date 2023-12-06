@@ -13,10 +13,14 @@
             padding: 20px;
             width: 30%;
         }
+        .colaC{
+            color: aquamarine;
+            width: 10%;
+        }
     </style>
 </head>
 <body>
-
+    <script type="text/javascript" src="codigo.js"></script>
     <div class="container">
         <!-- Sección de la Pila -->
         <div class="section" id="stack-section">
@@ -29,6 +33,11 @@
         <!-- Sección de la Cola -->
         <div class="section" id="queue-section">
             <h2>Cola</h2>
+            <div id="datosCola"></div><br>
+            <div id="cola"></div><br>
+            <button onclick="newQueue()">Nueva Cola</button>
+            <button>Cargar Cola cola</button>
+            <button>Almacenar cola</button><br><br>
             <button onclick="enqueueQueue()">Agregar a Cola</button>
             <button onclick="dequeueQueue()">Eliminar de Cola</button>
             <!-- Aquí puedes agregar los elementos de la cola -->
@@ -42,7 +51,7 @@
             <!-- Aquí puedes agregar los elementos de la lista -->
         </div>
     </div>
-
+    <!--
     <script>
         
         function pushStack() {
@@ -69,6 +78,6 @@
             
         }
     </script>
-
+    -->
 </body>
 </html>
