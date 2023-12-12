@@ -39,7 +39,7 @@ function storeQueue(){
     const longitudCola = document.querySelectorAll('#cola .colaC').length;
     for(let i=0; i<longitudCola; i++){
         let elemento = cola.getElementsByTagName("input")[i].value;
-        document.cookie = "elemento"+"i="+ encodeURIComponent(elemento)+";max-age=120";
+        document.cookie = "elemento"+i+"="+ encodeURIComponent(elemento)+";max-age=120";
     }
     alert(document.cookie);
     
