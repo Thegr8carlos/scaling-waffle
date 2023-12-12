@@ -37,6 +37,7 @@ function storeQueue(){
     deleteCookies();
     const cola = document.getElementById("cola");
     const longitudCola = document.querySelectorAll('#cola .colaC').length;
+    document.cookie = "cantidadE="+encodeURIComponent(longitudCola)+";max-age=120";
     for(let i=0; i<longitudCola; i++){
         let elemento = cola.getElementsByTagName("input")[i].value;
         document.cookie = "elemento"+i+"="+ encodeURIComponent(elemento)+";max-age=120";
@@ -45,7 +46,20 @@ function storeQueue(){
     
 }
 
-function showCookies(name){
+function showCookies(){
+    let cantidadE = getCookies(cantidadE);
+    const cola = document.getElementById("cola");
+    for(var i=0; i < cantidadE; i++){
+        let valor = getCookies("elemento"+cantidadE);
+        const nuevoNodo = document.createElement("input");
+        nuevoNodo.value = valor.value;
+        nuevoNodo.readOnly=true;
+        nuevoNodo.setAttribute("class","colaC");
+        cola.insertBefore(nuevoNodo, cola.firstChild);
+    }
+}
+
+function getCookies(name){
     var nameEQ = name + "="; 
     var ca = document.cookie.split(';');
     let cookiesC;
@@ -59,8 +73,7 @@ function showCookies(name){
     }
 
   }
-    
-    alert(cookiesC);
+
 }   
 
 function downloadQueue(){
