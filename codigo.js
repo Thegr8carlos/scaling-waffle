@@ -41,6 +41,7 @@ function storeQueue(){
         let elemento = cola.getElementsByTagName("input")[i].value;
         document.cookie = "elemento"+"i="+ encodeURIComponent(elemento)+";max-age=120";
     }
+    alert(document.cookie);
     
 }
 
