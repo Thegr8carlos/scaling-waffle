@@ -47,12 +47,13 @@ function storeQueue(){
 }
 
 function showCookies(){
-    let cantidadE = getCookies(cantidadE);
+    let cantidadE = getCookies("cantidadE");
     const cola = document.getElementById("cola");
-    for(var i=0; i < cantidadE; i++){
-        let valor = getCookies("elemento"+cantidadE);
+    for(var i=cantidadE-1; i >= 0; i--){
+        let param = "elemento"+i;
+        let valor = getCookies(param);
         const nuevoNodo = document.createElement("input");
-        nuevoNodo.value = valor.value;
+        nuevoNodo.value = valor;
         nuevoNodo.readOnly=true;
         nuevoNodo.setAttribute("class","colaC");
         cola.insertBefore(nuevoNodo, cola.firstChild);
@@ -73,6 +74,7 @@ function getCookies(name){
     }
 
   }
+  return cookiesC;
 
 }   
 
