@@ -2,37 +2,50 @@
 //codigo para cola
 let contC=0;
 function newQueue(){
-    if(contC===0){
-        const datosCola = document.getElementById("datosCola");
-        const inputT = document.createElement("input");
-        inputT.setAttribute("id", "cajaTC");
-        datosCola.appendChild(inputT);
-        contC=contC+1;
-    }
-    
+	if(contC===0){
+		const datosCola = document.getElementById("datosCola");
+		const inputT = document.createElement("input");
+		inputT.setAttribute("id", "cajaTC");
+		datosCola.appendChild(inputT);
+		contC=contC+1;
+	}
+	const imagen = document.getElementById("imagenCola");
+	imagen.removeChild(imagen.lastChild);
+	const codigoCrearCola = document.createElement("img");
+	codigoCrearCola.src="crearCola.png";
+	codigoCrearCola.setAttribute("class","imagenColaS");
+	imagen.appendChild(codigoCrearCola);
+
 }
 
 let numColas=0;
 function enqueueQueue(){
-    let valor = document.getElementById("cajaTC");
-    const cola = document.getElementById("cola");
-    const nuevoNodo = document.createElement("input");
-    nuevoNodo.value = valor.value;
-    nuevoNodo.readOnly=true;
-    nuevoNodo.setAttribute("class","colaC");
-    cola.insertBefore(nuevoNodo, cola.firstChild);
-    numColas=numColas+12
+	let valor = document.getElementById("cajaTC");
+	const cola = document.getElementById("cola");
+	const nuevoNodo = document.createElement("input");
+	nuevoNodo.value = valor.value;
+	nuevoNodo.readOnly=true;
+	nuevoNodo.setAttribute("class","colaC");
+	cola.insertBefore(nuevoNodo, cola.firstChild);
+	numColas=numColas+12
 
-    //let animado = document.getElementById("colaC");
-    animate({
-        duration: 1000,
-        timing: function(timeFraction) {
-        return Math.pow(timeFraction, 2);
-        },
-        draw: function(progress) {
-        nuevoNodo.style.left = progress * (88) + '%';
-        }
-    });
+	//let animado = document.getElementById("colaC");
+	animate({
+		duration: 1000,
+		timing: function back(x, timeFraction) {
+			return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x)
+		}.bind(null, 3.5),
+		draw: function(progress) {
+			nuevoNodo.style.left = progress * 20 + '%';
+		}
+		});
+
+	const imagen = document.getElementById("imagenCola");
+	imagen.removeChild(imagen.lastChild);
+	const codigoEncolar = document.createElement("img");
+	codigoEncolar.src="encolar.png";
+	codigoEncolar.setAttribute("class","imagenColaS");
+	imagen.appendChild(codigoEncolar);
     
 }
 
@@ -41,11 +54,9 @@ function animate(options) {
     var start = performance.now();
   
     requestAnimationFrame(function animate(time) {
-      // timeFraction от 0 до 1
+      
       var timeFraction = (time - start) / options.duration;
       if (timeFraction > 1) timeFraction = 1;
-  
-      // текущее состояние анимации
       var progress = options.timing(timeFraction)
       
       options.draw(progress);
@@ -61,6 +72,13 @@ function animate(options) {
 function dequeueQueue(){
     const cola = document.getElementById("cola");
     cola.removeChild(cola.lastChild);
+
+	const imagen = document.getElementById("imagenCola");
+	imagen.removeChild(imagen.lastChild);
+	const codigoDesencolar = document.createElement("img");
+	codigoDesencolar.src="desencolar.png";
+	codigoDesencolar.setAttribute("class","imagenColaS");
+	imagen.appendChild(codigoDesencolar);
 }
 
 function deleteCookies(){

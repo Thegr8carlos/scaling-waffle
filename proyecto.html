@@ -5,13 +5,18 @@
     <style>
         .container {
             display: flex;
+            flex-direction: column;
             justify-content: space-around;
             padding: 20px;
+            height: 600px;
         }
         .section {
             border: 1px solid black;
             padding: 20px;
-            width: 30%;
+            width: 80%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content:space-between;
         }
         .colaC{
             color: blueviolet;
@@ -23,9 +28,11 @@
 
         }
         #cola {
-            outline: 1px solid #E8C48E;
-            width: 50%;
+            width: 80%;
             height: 10%;
+        }
+        .imagenColaS{
+            height: 200px;
         }
     </style>
 </head>
@@ -34,14 +41,18 @@
     <div class="container">
         <!-- Sección de la Pila -->
         <div class="section" id="stack-section">
+            <div>
             <h2>Pila</h2>
             <button onclick="pushStack()">Agregar a Pila</button>
             <button onclick="popStack()">Eliminar de Pila</button>
             <!-- Aquí puedes agregar los elementos de la pila -->
+            </div>
+            <div></div>
         </div>
 
         <!-- Sección de la Cola -->
         <div class="section" id="queue-section">
+            <div>
             <h2>Cola</h2>
             <div id="datosCola"></div><br>
             <div id="cola"></div><br>
@@ -49,15 +60,23 @@
             <button onclick="showCookies()">Cargar Cola</button>
             <button onclick="storeQueue()">Almacenar cola</button><br><br>
             <button onclick="enqueueQueue()" id="encolar">Agregar a Cola</button>
-            <button onclick="dequeueQueue()">Eliminar de Cola</button>
+            <button onclick="dequeueQueue()">Eliminar de Cola</button><br><br>
+            </div>
+            <div id="imagenCola">
+            </div>
             <!-- Aquí puedes agregar los elementos de la cola -->
         </div>
 
         <!-- Sección de la Lista -->
         <div class="section" id="list-section">
+            <div>
             <h2>Lista</h2>
             <button onclick="addElementList()">Agregar a Lista</button>
             <button onclick="removeElementList()">Eliminar de Lista</button>
+            </div>
+            <div style="align-items: center;">
+                <img src="" alt="">
+            </div>
             <!-- Aquí puedes agregar los elementos de la lista -->
         </div>
     </div>
