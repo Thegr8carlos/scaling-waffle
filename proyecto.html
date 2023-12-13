@@ -16,6 +16,16 @@
         .colaC{
             color: blueviolet;
             width: 10%;
+            height: 80%;
+            background: #59e2ef;
+            position: relative;
+            cursor: pointer;
+
+        }
+        #cola {
+            outline: 1px solid #E8C48E;
+            width: 50%;
+            height: 10%;
         }
     </style>
 </head>
@@ -38,7 +48,7 @@
             <button onclick="newQueue()">Nueva Cola</button>
             <button onclick="showCookies()">Cargar Cola</button>
             <button onclick="storeQueue()">Almacenar cola</button><br><br>
-            <button onclick="enqueueQueue()">Agregar a Cola</button>
+            <button onclick="enqueueQueue()" id="encolar">Agregar a Cola</button>
             <button onclick="dequeueQueue()">Eliminar de Cola</button>
             <!-- Aquí puedes agregar los elementos de la cola -->
         </div>
@@ -51,6 +61,7 @@
             <!-- Aquí puedes agregar los elementos de la lista -->
         </div>
     </div>
+    
     <!--
     <script>
         

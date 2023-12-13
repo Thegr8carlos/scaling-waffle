@@ -12,6 +12,7 @@ function newQueue(){
     
 }
 
+let numColas=0;
 function enqueueQueue(){
     let valor = document.getElementById("cajaTC");
     const cola = document.getElementById("cola");
@@ -20,7 +21,42 @@ function enqueueQueue(){
     nuevoNodo.readOnly=true;
     nuevoNodo.setAttribute("class","colaC");
     cola.insertBefore(nuevoNodo, cola.firstChild);
+    numColas=numColas+12
+
+    //let animado = document.getElementById("colaC");
+    animate({
+        duration: 1000,
+        timing: function(timeFraction) {
+        return Math.pow(timeFraction, 2);
+        },
+        draw: function(progress) {
+        nuevoNodo.style.left = progress * (88) + '%';
+        }
+    });
+    
 }
+
+function animate(options) {
+
+    var start = performance.now();
+  
+    requestAnimationFrame(function animate(time) {
+      // timeFraction от 0 до 1
+      var timeFraction = (time - start) / options.duration;
+      if (timeFraction > 1) timeFraction = 1;
+  
+      // текущее состояние анимации
+      var progress = options.timing(timeFraction)
+      
+      options.draw(progress);
+  
+      if (timeFraction < 1) {
+        requestAnimationFrame(animate);
+      }
+  
+    });
+  }
+
 
 function dequeueQueue(){
     const cola = document.getElementById("cola");
