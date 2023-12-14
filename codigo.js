@@ -12,7 +12,7 @@ function newQueue(){
 	const imagen = document.getElementById("imagenCola");
 	imagen.removeChild(imagen.lastChild);
 	const codigoCrearCola = document.createElement("img");
-	codigoCrearCola.src="crearCola.png";
+	codigoCrearCola.src="crearCola.svg";
 	codigoCrearCola.setAttribute("class","imagenColaS");
 	imagen.appendChild(codigoCrearCola);
 
@@ -70,15 +70,34 @@ function animate(options) {
 
 
 function dequeueQueue(){
-    const cola = document.getElementById("cola");
-    cola.removeChild(cola.lastChild);
 
+    const cola = document.getElementById("cola");
+	const anima = cola.lastChild;
+	
+	animate({
+        duration: 1000,
+        timing: function circ(timeFraction) {
+          return 1 - Math.sin(Math.acos(timeFraction))
+        },
+        draw: function(progress) {
+			anima.setAttribute("style","margin-left: "+ progress * 80 + "%;");
+        }
+    });
+
+	setTimeout(() => {
+		cola.removeChild(anima);
+	  }, "1000");
+
+	//mostrar codigo de cpp
 	const imagen = document.getElementById("imagenCola");
 	imagen.removeChild(imagen.lastChild);
 	const codigoDesencolar = document.createElement("img");
 	codigoDesencolar.src="desencolar.png";
 	codigoDesencolar.setAttribute("class","imagenColaS");
 	imagen.appendChild(codigoDesencolar);
+	//termina cpp
+	
+
 }
 
 function deleteCookies(){
@@ -110,6 +129,15 @@ function showCookies(){
         nuevoNodo.value = valor;
         nuevoNodo.readOnly=true;
         nuevoNodo.setAttribute("class","colaC");
+		animate({
+			duration: 1000,
+			timing: function back(x, timeFraction) {
+				return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x)
+			}.bind(null, 3.5),
+			draw: function(progress) {
+				nuevoNodo.style.left = progress * 20 + '%';
+			}
+			});
         cola.insertBefore(nuevoNodo, cola.firstChild);
     }
 }
