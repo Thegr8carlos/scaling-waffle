@@ -1,4 +1,96 @@
+let pila = []; // Inicializa la pila como un arreglo vacío
+
+function pushPila() {
+    let value = document.getElementById("pilaInput").value;
+    if (value) {
+        pila.push(value);
+        document.getElementById("pilaInput").value = '';
+        displayPila();
+        mostrarImagen('push.png');
+    }   
+}
+
+function popPila() {
+    if (pila.length > 0) {
+        let pilaContainer = document.getElementById("pilaContainer");
+        let lastElement = pilaContainer.firstChild;
+        lastElement.classList.add("shrinking");
+
+        setTimeout(() => {
+            
+            mostrarImagen('pop.png');
+            pila.pop();
+            displayPila();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+function mostrarImagen(nombreImagen) {
+    let imagenDiv = document.getElementById("imagenPila");
+    imagenDiv.innerHTML = '<img src="' + nombreImagen + '" alt="Acción de Pila" />';
+}
+
+function displayPila() {
+    let pilaContainer = document.getElementById("pilaContainer");
+    pilaContainer.innerHTML = '';
+    pila.slice().reverse().forEach(element => {
+        let div = document.createElement("div");
+        div.textContent = element;
+        div.className = 'pilaElement growing';
+        pilaContainer.appendChild(div);
+    });
+}
+function guardarPila() {
+    const pilaStr = JSON.stringify(pila);
+    document.cookie = "pilaGuardada=" + pilaStr + ";max-age=86400;path=/"; // Guarda por 1 día
+}
+
+function cargarPila() {
+    const cookies = document.cookie.split(';');
+    const pilaCookie = cookies.find(row => row.startsWith('pilaGuardada'));
+    if (pilaCookie) {
+        const pilaStr = pilaCookie.split('=')[1];
+        pila = JSON.parse(pilaStr);
+        displayPila();
+    } else {
+        alert("No hay pila guardada.");
+    }
+}
+
+
+
+
 //aaaaaaaaaaaaaa
+
+let stack = []; // Inicializa la pila como un arreglo vacío
+
+function pushStack() {
+    let value = document.getElementById("stackInput").value;
+    if (value) {
+        stack.push(value); // Agrega el elemento a la pila
+        displayStack(); // Actualiza la visualización de la pila
+        document.getElementById("stackInput").value = ''; // Limpia el campo de entrada
+    }
+}
+
+function popStack() {
+    if (stack.length > 0) {
+        stack.pop(); // Elimina el elemento superior de la pila
+        displayStack(); // Actualiza la visualización de la pila
+    }
+}
+
+function displayStack() {
+    let stackContainer = document.getElementById("stackContainer");
+    stackContainer.innerHTML = ''; // Limpia el contenedor actual
+    stack.slice().reverse().forEach(element => {
+        let div = document.createElement("div");
+        div.textContent = element;
+        stackContainer.appendChild(div);
+    });
+}
+
+
 //codigo para cola
 let contC=0;
 function newQueue(){
