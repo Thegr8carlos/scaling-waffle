@@ -56,6 +56,32 @@
         .imagenColaS{
             height: 200px;
         }
+        .listaElement {
+    background-color: #f4ff26; /* Color verde */
+    color: black;
+    margin: 20px 0;
+    padding: 10px;
+    width: 30px;
+    display: inline-block; /* Muestra los divs en línea */
+    text-align: center;
+    border-radius: 5px; /* Bordes redondeados */
+    transform: scaleX(0);
+    transition: transform 2s;
+    
+}
+
+.listaElement.growing {
+    transform: scaleX(1);
+}
+
+.listaElement.shrinking {
+    transform: scaleX(0);
+    transition: transform 2s;
+}
+
+.listacont{
+    white-space: nowrap; /* Evita el salto de línea */
+}
     </style>
 </head>
 <body>
@@ -103,15 +129,20 @@
         <div class="section" id="list-section">
             <div>
             <h2>Lista</h2>
-            <button onclick="addElementList()">Agregar a Lista</button>
-            <button onclick="removeElementList()">Eliminar de Lista</button>
+            <input type="text" id="listaInput" placeholder="Ingresa un elemento">
+            <input type="text" id="listaPos" placeholder="Ingresa la pos">
+            <button onclick="pushListaIzq()">Agregar a izquierda</button>
+            <button onclick="poplistaIzq()">Eliminar izquierda</button>
+            <button onclick="pushListaPos()">agregar pos</button>
+            <button onclick="poplistaPos()">Eliminar pos</button>
+            <button onclick="pushListaDer()">Agregar a derecha</button>
+            <button onclick="poplistaDer()">Eliminar de derecha</button>
+            <button onclick="guardarlista()">Guardar lista</button>
+            <button onclick="cargarlista()">Cargar lista</button>
+            <div id="imagenlista"></div> <!-- Div para mostrar las imágenes -->
+            <div id="listaContainer" class="listacont"></div> <!-- Contenedor para los elementos de la pila -->
             </div>
-            <div style="align-items: center;">
-                <img src="" alt="">
-            </div>
-            <!-- Aquí puedes agregar los elementos de la lista -->
         </div>
-    </div>
     
     <!--
     <script>

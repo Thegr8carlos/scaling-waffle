@@ -259,3 +259,123 @@ function downloadQueue(){
     const cola = document.getElementById("cola");
     cola.appendChild(colaGuardada);
 }
+
+
+// codigo de la lista
+
+let lista = []; // Inicializa la lista como un arreglo vacío
+
+function pushListaIzq() {
+    let value = document.getElementById("listaInput").value;
+    if (value) {
+        lista.push(value);
+        document.getElementById("listaInput").value = '';
+        displaylista();
+        mostrarImagenLista('agregaIzq.png');
+    }   
+}
+
+
+function pushListaDer() {
+    let value = document.getElementById("listaInput").value;
+    if (value) {
+        lista.unshift(value);
+        document.getElementById("listaInput").value = '';
+        displaylista();
+        mostrarImagenLista('agregaDer.png');
+    }   
+}
+
+function pushListaPos() {
+    let pos = document.getElementById("listaPos").value;
+    let value = document.getElementById("listaInput").value;
+    if (value) {
+        lista.splice(pos-1, 0 , value);
+        document.getElementById("listaInput").value = '';
+        document.getElementById("listaPos").value = '';
+        displaylista();
+        mostrarImagenLista('agregaIndex.png');
+    }   
+}
+
+
+function poplistaIzq() {
+    if (lista.length > 0) {
+        let listaContainer = document.getElementById("listaContainer");
+        let lastElement = listaContainer.firstChild;
+        lastElement.classList.add("shrinking");
+
+        setTimeout(() => {
+            
+            mostrarImagenLista('popIzq.png');
+            lista.pop();
+            displaylista();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+
+function poplistaDer() {
+    if (lista.length > 0) {
+        let listaContainer = document.getElementById("listaContainer");
+        let lastElement = listaContainer.lastChild;
+        lastElement.classList.add("shrinking");
+
+        setTimeout(() => {
+            
+            mostrarImagenLista('popDer.png');
+            lista.shift();
+            displaylista();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+
+function poplistaPos() {
+    let pos = document.getElementById("listaPos").value;
+    if (lista.length > pos-1 && pos>0) {
+        let listaContainer = document.getElementById("listaContainer");
+        let lastElement = listaContainer.childNodes[pos-1];
+        lastElement.classList.add("shrinking");
+        document.getElementById("listaPos").value = '';
+
+        setTimeout(() => {
+            
+            mostrarImagenLista('popIndex.png');
+            lista.splice(pos-1,1);
+            displaylista();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+function mostrarImagenLista(nombreImagen) {
+    let imagenDiv = document.getElementById("imagenlista");
+    imagenDiv.innerHTML = '<img src="' + nombreImagen + '" alt="Acción de lista" />';
+}
+
+function displaylista() {
+    let listaContainer = document.getElementById("listaContainer");
+    listaContainer.innerHTML = '';
+    lista.slice().reverse().forEach(element => {
+        let div = document.createElement("div");
+        div.textContent = element;
+        div.className = 'listaElement growing';
+        listaContainer.appendChild(div);
+    });
+}
+function guardarlista() {
+    const listaStr = JSON.stringify(lista);
+    document.cookie = "listaGuardada=" + listaStr + ";max-age=86400;path=/"; // Guarda por 1 día
+}
+
+function cargarlista() {
+    const cookies = document.cookie.split(';');
+    const listaCookie = cookies.find(row => row.startsWith('listaGuardada'));
+    if (listaCookie) {
+        const listaStr = listaCookie.split('=')[1];
+        lista = JSON.parse(listaStr);
+        displaylista();
+    } else {
+        alert("No hay lista guardada.");
+    }
+}
