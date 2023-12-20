@@ -3,6 +3,28 @@
 <head>
     <title>Estructuras de Datos: Pila, Cola, Lista</title>
     <style>
+    .pilaElement {
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px; /* Bordes redondeados */
+    transform: scaleY(0);
+    transition: transform 2s;
+    
+}
+
+.pilaElement.growing {
+    transform: scaleY(1);
+}
+
+.pilaElement.shrinking {
+    transform: scaleY(0);
+    transition: transform 2s;
+}
+
+
         .container {
             display: flex;
             flex-direction: column;
@@ -39,16 +61,26 @@
 <body>
     <script type="text/javascript" src="codigo.js"></script>
     <div class="container">
-        <!-- Sección de la Pila -->
-        <div class="section" id="stack-section">
-            <div>
+    <!-- Sección de la Pila -->
+    <div class="section" id="stack-section">
+        <div>
             <h2>Pila</h2>
-            <button onclick="pushStack()">Agregar a Pila</button>
-            <button onclick="popStack()">Eliminar de Pila</button>
-            <!-- Aquí puedes agregar los elementos de la pila -->
-            </div>
-            <div></div>
+            <input type="text" id="pilaInput" placeholder="Ingresa un elemento">
+            <button onclick="pushPila()">Agregar a Pila</button>
+            <button onclick="popPila()">Eliminar de Pila</button>
+            <button onclick="guardarPila()">Guardar Pila</button>
+            <button onclick="cargarPila()">Cargar Pila</button>
+            <div id="imagenPila"></div> <!-- Div para mostrar las imágenes -->
+            <div id="pilaContainer"></div> <!-- Contenedor para los elementos de la pila -->
         </div>
+        <div></div>
+    </div>
+    
+    
+
+
+
+
 
         <!-- Sección de la Cola -->
         <div class="section" id="queue-section">
