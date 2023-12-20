@@ -12,7 +12,7 @@ function newQueue(){
 	const imagen = document.getElementById("imagenCola");
 	imagen.removeChild(imagen.lastChild);
 	const codigoCrearCola = document.createElement("img");
-	codigoCrearCola.src="crearCola.svg";
+	codigoCrearCola.src="crearCola.png";
 	codigoCrearCola.setAttribute("class","imagenColaS");
 	imagen.appendChild(codigoCrearCola);
 
