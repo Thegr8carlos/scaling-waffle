@@ -41,8 +41,10 @@ function displayPila() {
     });
 }
 function guardarPila() {
+    deleteCookies();
     const pilaStr = JSON.stringify(pila);
     document.cookie = "pilaGuardada=" + pilaStr + ";max-age=86400;path=/"; // Guarda por 1 día
+    alert(document.cookie)
 }
 
 function cargarPila() {
@@ -104,7 +106,7 @@ function newQueue(){
 	const imagen = document.getElementById("imagenCola");
 	imagen.removeChild(imagen.lastChild);
 	const codigoCrearCola = document.createElement("img");
-	codigoCrearCola.src="crearCola.png";
+	codigoCrearCola.src="crearCola.svg";
 	codigoCrearCola.setAttribute("class","imagenColaS");
 	imagen.appendChild(codigoCrearCola);
 
@@ -212,6 +214,9 @@ function storeQueue(){
 }
 
 function showCookies(){
+    if(contC===0){
+		
+	
     let cantidadE = getCookies("cantidadE");
     const cola = document.getElementById("cola");
     for(var i=cantidadE-1; i >= 0; i--){
@@ -231,6 +236,7 @@ function showCookies(){
 			}
 			});
         cola.insertBefore(nuevoNodo, cola.firstChild);
+    }
     }
 }
 
@@ -258,4 +264,126 @@ function downloadQueue(){
     alert(colaGuardada.toString);
     const cola = document.getElementById("cola");
     cola.appendChild(colaGuardada);
+}
+
+
+// codigo de la lista
+
+let lista = []; // Inicializa la lista como un arreglo vacío
+
+function pushListaIzq() {
+    let value = document.getElementById("listaInput").value;
+    if (value) {
+        lista.unshift(value);
+        document.getElementById("listaInput").value = '';
+        displaylista();
+        mostrarImagenLista('agregaIzq.png');
+    }   
+}
+
+
+function pushListaDer() {
+    let value = document.getElementById("listaInput").value;
+    if (value) {
+        lista.push(value);
+        document.getElementById("listaInput").value = '';
+        displaylista();
+        mostrarImagenLista('agregaDer.png');
+    }   
+}
+
+function pushListaPos() {
+    let pos = document.getElementById("listaPos").value;
+    let value = document.getElementById("listaInput").value;
+    if (value) {
+        lista.splice(pos-1, 0 , value);
+        document.getElementById("listaInput").value = '';
+        document.getElementById("listaPos").value = '';
+        displaylista();
+        mostrarImagenLista('agregaIndex.png');
+    }   
+}
+
+
+function poplistaIzq() {
+    if (lista.length > 0) {
+        let listaContainer = document.getElementById("listaContainer");
+        let lastElement = listaContainer.firstChild;
+        lastElement.classList.add("shrinking");
+
+        setTimeout(() => {
+            
+            mostrarImagenLista('popIzq.png');
+            lista.pop();
+            displaylista();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+
+function poplistaDer() {
+    if (lista.length > 0) {
+        let listaContainer = document.getElementById("listaContainer");
+        let lastElement = listaContainer.lastChild;
+        lastElement.classList.add("shrinking");
+
+        setTimeout(() => {
+            
+            mostrarImagenLista('popDer.png');
+            lista.shift();
+            displaylista();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+
+function poplistaPos() {
+    let pos = document.getElementById("listaPos").value;
+    if (lista.length > pos-1 && pos>0) {
+        let listaContainer = document.getElementById("listaContainer");
+        let lastElement = listaContainer.childNodes[pos-1];
+        lastElement.classList.add("shrinking");
+        document.getElementById("listaPos").value = '';
+
+        setTimeout(() => {
+            
+            mostrarImagenLista('popIndex.png');
+            lista.splice(pos-1,1);
+            displaylista();
+        }, 2000); // Espera 2 segundos antes de eliminar el elemento
+    }
+}
+
+function mostrarImagenLista(nombreImagen) {
+    let imagenDiv = document.getElementById("imagenlista");
+    imagenDiv.innerHTML = '<img src="' + nombreImagen + '" alt="Acción de lista"  width = "400px"/>';
+}
+
+function displaylista() {
+    let listaContainer = document.getElementById("listaContainer");
+    listaContainer.innerHTML = '';
+    lista.slice().forEach(element => {
+        let div = document.createElement("div");
+        div.textContent = element;
+        div.className = 'listaElement growing';
+        listaContainer.appendChild(div);
+    });
+}
+function guardarlista() {
+    deleteCookies();
+    const listaStr = JSON.stringify(lista);
+    document.cookie = "listaGuardada=" + listaStr + ";max-age=86400;path=/"; // Guarda por 1 día
+    alert(document.cookie);
+}
+
+function cargarlista() {
+    const cookies = document.cookie.split(';');
+    const listaCookie = cookies.find(row => row.startsWith('listaGuardada'));
+    if (listaCookie) {
+        const listaStr = listaCookie.split('=')[1];
+        lista = JSON.parse(listaStr);
+        displaylista();
+    } else {
+        alert("No hay lista guardada.");
+    }
 }

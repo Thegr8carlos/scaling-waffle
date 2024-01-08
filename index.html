@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estructuras de Datos: Pila, Cola, Lista</title>
+    <style>
+    .pilaElement {
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px; /* Bordes redondeados */
+    transform: scaleY(0);
+    transition: transform 2s;
+    
+}
+
+.pilaElement.growing {
+    transform: scaleY(1);
+}
+
+.pilaElement.shrinking {
+    transform: scaleY(0);
+    transition: transform 2s;
+}
+
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .section {
+            border: 1px solid black;
+            padding: 20px;
+            width: 80%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content:space-between;
+        }
+        .colaC{
+            color: #0833A2;
+            width: 10%;
+            height: 80%;
+            background: aliceblue;
+            position: relative;
+            cursor: pointer;
+            
+
+        }
+        #cola {
+            width: 80%;
+        }
+        .imagenColaS{
+            height: 200px;
+        }
+        .listaElement {
+    background-color: #f4ff26; /* Color verde */
+    color: black;
+    margin: 20px 0;
+    padding: 10px;
+    width: 30px;
+    display: inline-block; /* Muestra los divs en línea */
+    text-align: center;
+    border-radius: 5px; /* Bordes redondeados */
+    transform: scaleX(0);
+    transition: transform 2s;
+    
+}
+
+.listaElement.growing {
+    transform: scaleX(1);
+    transition: transform 2s;
+}
+
+.listaElement.shrinking {
+    transform: scaleX(0);
+    transition: transform 2s;
+}
+
+.listacont{
+    white-space: nowrap; /* Evita el salto de línea */
+}
+    </style>
+</head>
+<body>
+    <script type="text/javascript" src="codigo.js"></script>
+    <div class="container">
+    <!-- Sección de la Pila -->
+    <div class="section" id="stack-section">
+        <div>
+            <h2>Pila</h2>
+            <input type="text" id="pilaInput" placeholder="Ingresa un elemento">
+            <button onclick="pushPila()">Agregar a Pila</button>
+            <button onclick="popPila()">Eliminar de Pila</button>
+            <button onclick="guardarPila()">Guardar Pila</button>
+            <button onclick="cargarPila()">Cargar Pila</button>
+            <div id="imagenPila"></div> <!-- Div para mostrar las imágenes -->
+            <div id="pilaContainer"></div> <!-- Contenedor para los elementos de la pila -->
+        </div>
+        <div></div>
+    </div>
+    
+    
+
+
+
+
+
+        <!-- Sección de la Cola -->
+        <div class="section" id="queue-section">
+            <div>
+            <h2>Cola</h2>
+            <div id="datosCola"></div><br>
+            <div id="cola"></div><br>
+            <button onclick="newQueue()">Nueva Cola</button>
+            <button onclick="showCookies()">Cargar Cola</button>
+            <button onclick="storeQueue()">Almacenar cola</button><br><br>
+            <button onclick="enqueueQueue()" id="encolar">Agregar a Cola</button>
+            <button onclick="dequeueQueue()">Eliminar de Cola</button><br><br>
+            </div>
+            <div id="imagenCola">
+            </div>
+            <!-- Aquí puedes agregar los elementos de la cola -->
+        </div>
+
+        <!-- Sección de la Lista -->
+        <div class="section" id="list-section">
+            <div>
+            <h2>Lista</h2>
+            <input type="text" id="listaInput" placeholder="Ingresa un elemento">
+            <input type="text" id="listaPos" placeholder="Ingresa la pos">
+            <button onclick="pushListaIzq()">Agregar a izquierda</button>
+            <button onclick="poplistaIzq()">Eliminar izquierda</button>
+            <button onclick="pushListaPos()">agregar pos</button>
+            <button onclick="poplistaPos()">Eliminar pos</button>
+            <button onclick="pushListaDer()">Agregar a derecha</button>
+            <button onclick="poplistaDer()">Eliminar de derecha</button>
+            <button onclick="guardarlista()">Guardar lista</button>
+            <button onclick="cargarlista()">Cargar lista</button>
+            <div id="imagenlista"></div> <!-- Div para mostrar las imágenes -->
+            <div id="listaContainer" class="listacont"></div> <!-- Contenedor para los elementos de la pila -->
+            </div>
+        </div>
+    
+    <!--
+    <script>
+        
+        function pushStack() {
+            
+        }
+
+        function popStack() {
+            
+        }
+
+        function enqueueQueue() {
+            
+        }
+
+        function dequeueQueue() {
+            
+        }
+
+        function addElementList() {
+            
+        }
+
+        function removeElementList() {
+            
+        }
+    </script>
+    -->
+</body>
+</html>
